@@ -1,3 +1,25 @@
-<h1>
-  {{title}}
-</h1>
+<div id="setup"
+     *ngIf="!setupComplete">
+  <div>
+  I would like to
+  <input id="goal" type="text" placeholder="eat a sandwhich" #newGoal>
+  <br/>
+  for
+  <input id="time" type="text" placeholder="10" #newTime>
+  minutes.
+  </div>
+  
+  <button id="start_button" 
+          (click)="startClicked(newGoal, newTime)">
+          Start
+  </button>
+</div>
+
+<div *ngIf="setupComplete">
+  <app-visual-timer [goal]="goal"
+                    [time]="time">
+  </app-visual-timer>
+  <button (click)="cancel()">
+    Cancel
+  </button>
+</div>
